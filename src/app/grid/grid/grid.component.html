@@ -1,0 +1,19 @@
+<span class="input-tuple">startingRow<input type="text" id="startingRow" name="startingRow" [(ngModel)]="newICard.startingRow"></span>
+<span class="input-tuple">startingCol<input type="text" id="startingCol" name="startingCol" [(ngModel)]="newICard.startingCol"></span>
+<span class="input-tuple">rowSpan<input type="text" id="rowSpan" name="rowSpan" [(ngModel)]="newICard.rowSpan"></span>
+<span class="input-tuple">colSpan<input type="text" id="colSpan" name="colSpan" [(ngModel)]="newICard.colSpan"></span>
+<span class="input-tuple">label<input type="text"id="label" name="label"  [(ngModel)]="newICard.label"></span>
+<button (click)="addCardHost()">Go</button>
+<button (click)="addColumn()">Add Col</button>
+
+
+<div class="wrapper" [ngStyle]="{'grid-template-columns':'repeat(' + columns + ', 1fr)','grid-template-rows':'repeat(' + rows + ', 1fr)'}">
+  <div *ngFor="let cell of cells" 
+    drag
+    (dragover)="dragover($event)" 
+    class="cell" 
+    [ngStyle]="{'grid-area':cell.gridarea}"> {{cell.gridArea}}</div>
+
+  <app-card-host *ngFor="let CH of cardHosts" (double-click)="clickCH(CH)" draggable="true" [ngStyle]="{'grid-area': CH.gridarea }">{{CH.label}}</app-card-host>
+</div>
+<div>x{{cardHosts | json}}</div>

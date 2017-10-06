@@ -11,7 +11,7 @@
       "check-space"
     ],
     "curly": true,
-    "eofline": true,
+    "eofline": false,
     "forin": true,
     "import-blacklist": [
       true,
@@ -86,8 +86,7 @@
     ],
     "radix": true,
     "semicolon": [
-      true,
-      "always"
+      false
     ],
     "triple-equals": [
       true,
