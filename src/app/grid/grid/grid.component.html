@@ -8,12 +8,30 @@
 
 
 <div class="wrapper" [ngStyle]="{'grid-template-columns':'repeat(' + columns + ', 1fr)','grid-template-rows':'repeat(' + rows + ', 1fr)'}">
-  <div *ngFor="let cell of cells" 
-    drag
-    (dragover)="dragover($event)" 
-    class="cell" 
-    [ngStyle]="{'grid-area':cell.gridarea}"> {{cell.gridArea}}</div>
+  <div *ngFor="let cell of cells" drag (dragover)="dragover($event)" class="cell" [ngStyle]="{'grid-area':cell.gridarea}">
+  {{cell.gridArea}}</div>
 
-  <app-card-host *ngFor="let CH of cardHosts" (double-click)="clickCH(CH)" draggable="true" [ngStyle]="{'grid-area': CH.gridarea }">{{CH.label}}</app-card-host>
+  <div class="card-host-wrapper" *ngFor="let CH of cardHosts" (double-click)="clickCH(CH)" draggable="true" [ngStyle]="{'grid-area': CH.gridarea }">
+    <div class="content card-area" (clickx)="clickCardHost()">
+      <app-sample-content></app-sample-content>
+    </div>
+  
+    <div class="n">n</div>
+    <div class="wnw">wnw</div>
+    <div class="ene">ene</div>
+
+    <div class="w">w</div>
+    <div class="e">e</div>
+
+    <div class="wsw">wsw</div>
+    <div class="ese">ese</div>
+
+    <div class="sw">sw</div>
+    <div class="ssw">sww</div>
+    <div class="s">s</div>
+    <div class="sse">sse</div>
+    <div class="se">se</div>
+  </div>
+
 </div>
 <div>x{{cardHosts | json}}</div>

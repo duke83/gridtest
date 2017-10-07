@@ -1,24 +1,131 @@
-* {box-sizing: border-box;}
-.wrapper {
-  max-width: 940px;
-  margin: 0 auto;
-  height:600px;
-  display:grid;
-  grid-gap: 20px;
-  background-color: #F7F7F7
+* {
+    box-sizing: border-box;
 }
-.wrapper > .cell{
+
+.wrapper {
+    max-width: 940px;
+    margin: 0 auto;
+    height: 600px;
+    display: grid;
+    grid-gap: 20px;
+    background-color: #F7F7F7;
+
+}
+
+.wrapper>.cell {
     background: #F0F0F0;
     border: 1px dashed gray;
     border-radius: 5px;
 }
-.wrapper > app-card-host {
-    /* border: 1px solid #85827E; */
-    border-radius: 5px;
-    background-color: rgba(233,171,88,.5);
-    /* padding: .2em; */
+
+.card-host-wrapper {
+    --border-color: #575454;
+    --rounded-radius: 5px;
     color: #d9480f;
-  }
+    font-size: 8pt;
+    display: grid;
+    height: 100%;
+    grid-template-columns: 3px 20px auto 20px 3px;
+    grid-template-rows: 20px 20px auto 20px 3px;
+    grid-template-areas: "n n n n n" "wnw content content content ene" "w  content content content e" "wsw content content content ese" "sw ssw s sse se"
+}
 
+.content {
+    grid-area: content;
+    background: #282626;
+    height: 100%;
+    overflow: auto;
+}
 
-  
+.nw {
+    grid-area: nw;
+    background: #00FF00;
+}
+
+.nnw {
+    grid-area: nnw;
+    cursor: move;
+    background: #A6ACB8;
+}
+
+.n {
+    grid-area: n;
+    cursor: move;
+    background: #828080;
+    border-radius: var(--rounded-radius) var(--rounded-radius) 0 0;
+}
+
+.ne {
+    grid-area: ne;
+    background: var(--border-color);
+}
+
+.wnw {
+    grid-area: wnw;
+    cursor: ew-resize;
+    background: var(--border-color);
+}
+
+.ene {
+    grid-area: ene;
+    cursor: ew-resize;
+    background: var(--border-color);
+}
+
+.wsw {
+    grid-area: wsw;
+    cursor: nesw-resize;
+    background: var(--border-color);
+}
+
+.ssw {
+    grid-area: ssw;
+    cursor: nesw-resize;
+    background: var(--border-color);
+}
+
+.sw {
+    grid-area: sw;
+    cursor: nesw-resize;
+    background: var(--border-color);
+    border-radius: 0 0 0 var(--rounded-radius);
+}
+
+.ese {
+    grid-area: ese;
+    cursor: nwse-resize;
+    background: var(--border-color);
+}
+
+.sse {
+    grid-area: sse;
+    cursor: nwse-resize;
+    background: var(--border-color);
+}
+
+.se {
+    grid-area: se;
+    cursor: nwse-resize;
+    background: var(--border-color);
+    border-radius: 0 0 var(--rounded-radius) 0;
+}
+
+.w {
+    grid-area: w;
+    cursor: ew-resize;
+    background: var(--border-color);
+}
+
+.e {
+    grid-area: e;
+    cursor: ew-resize;
+    background: var(--border-color);
+}
+
+.s {
+    grid-area: s;
+    cursor: ns-resize;
+    background: var(--border-color);
+}
+
+.card-area {}

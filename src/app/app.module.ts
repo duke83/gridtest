@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CardHostComponent } from './grid/card-host/card-host.component';
 import { GridComponent } from './grid/grid/grid.component';
+import { SampleContentComponent } from './sample-content/sample-content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardHostComponent,
-    GridComponent
+    GridComponent,
+    SampleContentComponent
   ],
   imports: [
     BrowserModule,
