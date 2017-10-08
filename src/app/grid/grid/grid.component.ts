@@ -73,9 +73,19 @@ export class GridComponent implements IGrid, OnInit {
       }
     }
   }
-  clickCH(evt, ch) {
+  clickCH(evt, ch: ICardHost) {
+    // this.cardHosts.find(f => f.id === ch.id)
+    // ch.gridarea = '';
+    const thisEl = document.getElementById('CH-' + ch.id);
+    const newHeight = thisEl.clientHeight;
+    thisEl.style.position = 'absolute';
+    thisEl.style.left = '300px';
+    thisEl.style.width = '400px';
+    thisEl.style.height = newHeight + 'px';
+    console.log('thisEl', thisEl)
     console.log('event', evt)
     console.log('cardhost', ch)
+    console.log(this.cardHosts)
   }
   dragover(evt) {
     console.log(evt)
