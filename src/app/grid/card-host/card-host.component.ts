@@ -7,6 +7,7 @@ import { ICardHost } from '../types/index';
   styleUrls: ['../grid.css', './card-host.component.css']
 })
 export class CardHostComponent implements ICardHost, OnInit {
+  id: number;
   startingRow: number;
   startingCol: number;
   rowSpan: number;

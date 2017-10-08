@@ -22,11 +22,8 @@
 .card-host-wrapper {
     --border-color: #575454;
     --rounded-radius: 5px;
-   
-    color: #d9480f;
     font-size: 8pt;
     display: grid;
-    height: 100%;
     grid-template-columns: 3px 20px 1fr 20px 3px;
     grid-template-rows: 20px 20px 1fr 20px 3px;
     grid-template-areas: "n n n n n" "wnw content content content ene" "w  content content content e" "wsw content content content ese" "sw ssw s sse se"

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import {IGrid, ICardHost} from '../types'
+import { IGrid, ICardHost } from '../types'
 
 @Component({
   selector: 'app-grid',
@@ -9,18 +9,19 @@ import {IGrid, ICardHost} from '../types'
 })
 export class GridComponent implements IGrid, OnInit {
 
-  cardHosts: ICardHost[]= []
+  cardHosts: ICardHost[] = []
   // tslint:disable-next-line:no-inferrable-types
-  columns: number= 5;
+  columns: number = 5;
   // tslint:disable-next-line:no-inferrable-types
-  rows: number= 5;
+  rows: number = 5;
   rowHeight = 75;
   columnWidth = 75;
   cells = [];
 
 
   // tslint:disable-next-line:member-ordering
-  newICard: ICardHost= {
+  newICard: ICardHost = {
+    id: 0,
     startingRow: 1,
     startingCol: 1,
     rowSpan: 2,
@@ -31,8 +32,12 @@ export class GridComponent implements IGrid, OnInit {
   constructor() { }
 
   addCardHost(cardHost: ICardHost): void {
-    console.log(this.newICard)
     const ch = Object.assign({}, this.newICard)
+    const allIds = this.cardHosts.map((m) => m.id)
+    if (allIds.length > 0) {
+      const newid = allIds.reduce((a, b) => Math.max(a, b)) + 1
+      ch.id = newid
+    }
     const startRow: number = +ch.startingRow
     const endRow: number = startRow + +ch.rowSpan
     const startCol: number = +ch.startingCol
@@ -40,7 +45,6 @@ export class GridComponent implements IGrid, OnInit {
 
     // tslint:disable-next-line:no-unused-expression
     this.AdjustColumns(endCol)
-
     ch.gridarea = `${startRow} / ${startCol} / ${endRow} / ${endCol}`
     this.cardHosts.push(ch)
   }
@@ -48,7 +52,7 @@ export class GridComponent implements IGrid, OnInit {
   AdjustColumns(endCol: number) {
     let currentCols = this.columns
     const newColLength = endCol
-    while (currentCols < newColLength ) {
+    while (currentCols < newColLength) {
       this.addColumn()
       currentCols++
     }
@@ -57,20 +61,21 @@ export class GridComponent implements IGrid, OnInit {
   addColumn() {
     this.columns++
     const c = this.columns;
-    for (let r = 1; r < this.rows + 1; r++ ) {
-      this.cells.push({gridarea: `${r} / ${c} / ${r} / ${c}` })
+    for (let r = 1; r < this.rows + 1; r++) {
+      this.cells.push({ gridarea: `${r} / ${c} / ${r} / ${c}` })
     }
   }
   ngOnInit() {
     const tot = this.rows * this.columns
-    for (let r = 1; r < this.rows + 1; r++ ) {
-      for (let c = 1; c < this.columns + 1; c++ ) {
-        this.cells.push({gridarea: `${r} / ${c} / ${r} / ${c}` })
+    for (let r = 1; r < this.rows + 1; r++) {
+      for (let c = 1; c < this.columns + 1; c++) {
+        this.cells.push({ gridarea: `${r} / ${c} / ${r} / ${c}` })
       }
     }
   }
-  clickCH(ch) {
-    alert('clicked cardhost parent area' + JSON.stringify(ch))
+  clickCH(evt, ch) {
+    console.log('event', evt)
+    console.log('cardhost', ch)
   }
   dragover(evt) {
     console.log(evt)

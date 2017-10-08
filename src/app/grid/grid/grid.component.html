@@ -11,20 +11,20 @@
   <div *ngFor="let cell of cells" drag (dragover)="dragover($event)" class="cell" [ngStyle]="{'grid-area':cell.gridarea}">
   {{cell.gridArea}}</div>
 
-  <div class="card-host-wrapper" *ngFor="let CH of cardHosts" (double-click)="clickCH(CH)"  [ngStyle]="{'grid-area': CH.gridarea }">
-    <div class="content card-area" (clickx)="clickCardHost()">
+  <div class="card-host-wrapper" id="CH-{{CH.id}}" *ngFor="let CH of cardHosts" (click)="clickCH($event,CH)"  [ngStyle]="{'grid-area': CH.gridarea }">
+    <div class="content card-area">
       <app-sample-content></app-sample-content>
     </div>
   
-    <div class="n">n</div>
-    <div class="wnw">wnw</div>
-    <div class="ene">ene</div>
+    <div class="n"></div>
+    <div class="wnw"></div>
+    <div class="ene"></div>
 
-    <div class="w">w</div>
-    <div class="e">e</div>
+    <div class="w"></div>
+    <div class="e"></div>
 
-    <div class="wsw">wsw</div>
-    <div class="ese">ese</div>
+    <div class="wsw"></div>
+    <div class="ese"></div>
 
     <div class="sw"></div>
     <div class="ssw"></div>
