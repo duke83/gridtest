@@ -7,11 +7,11 @@
 <button (click)="addColumn()">Add Col</button>
 
 
-<div class="wrapper" [ngStyle]="{'grid-template-columns':'repeat(' + columns + ', 1fr)','grid-template-rows':'repeat(' + rows + ', 1fr)'}">
+<div class="wrapper" [ngStyle]="{'grid-template-columns':'repeat(' + columns + ', ' + columnWidth +'px)','grid-template-rows':'repeat(' + rows + ', ' + rowHeight + 'px)'}">
   <div *ngFor="let cell of cells" drag (dragover)="dragover($event)" class="cell" [ngStyle]="{'grid-area':cell.gridarea}">
   {{cell.gridArea}}</div>
 
-  <div class="card-host-wrapper" *ngFor="let CH of cardHosts" (double-click)="clickCH(CH)" draggable="true" [ngStyle]="{'grid-area': CH.gridarea }">
+  <div class="card-host-wrapper" *ngFor="let CH of cardHosts" (double-click)="clickCH(CH)"  [ngStyle]="{'grid-area': CH.gridarea }">
     <div class="content card-area" (clickx)="clickCardHost()">
       <app-sample-content></app-sample-content>
     </div>
@@ -26,11 +26,11 @@
     <div class="wsw">wsw</div>
     <div class="ese">ese</div>
 
-    <div class="sw">sw</div>
-    <div class="ssw">sww</div>
-    <div class="s">s</div>
-    <div class="sse">sse</div>
-    <div class="se">se</div>
+    <div class="sw"></div>
+    <div class="ssw"></div>
+    <div class="s"></div>
+    <div class="sse"></div>
+    <div class="se"></div>
   </div>
 
 </div>

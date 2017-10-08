@@ -14,7 +14,8 @@ export class GridComponent implements IGrid, OnInit {
   columns: number= 5;
   // tslint:disable-next-line:no-inferrable-types
   rows: number= 5;
-
+  rowHeight = 75;
+  columnWidth = 75;
   cells = [];
 
 
