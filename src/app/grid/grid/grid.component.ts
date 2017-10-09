@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-
+import { Component, OnInit, Input, HostListener } from '@angular/core';
+import { Observable } from 'rxjs/Observable'
 import { IGrid, ICardHost } from '../types'
 
 @Component({
@@ -73,9 +73,15 @@ export class GridComponent implements IGrid, OnInit {
       }
     }
   }
-  clickCH(evt, ch: ICardHost) {
+
+  dragCH(evt, ch: ICardHost) {
+    console.log('evt', evt)
+  }
+  clickCH(evt: MouseEvent, ch: ICardHost) {
+    if (evt.srcElement.className === 'e') { alert('ok') }
     // this.cardHosts.find(f => f.id === ch.id)
     // ch.gridarea = '';
+    // now to implement drag instead of click.
     const thisEl = document.getElementById('CH-' + ch.id);
     const newHeight = thisEl.clientHeight;
     thisEl.style.position = 'absolute';
