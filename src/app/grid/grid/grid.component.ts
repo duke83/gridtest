@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Observable } from 'rxjs/Observable'
+// import { Observable } from 'rxjs/Observable'
 import { IGrid, ICardHost } from '../types'
 
 @Component({
@@ -11,12 +11,14 @@ export class GridComponent implements IGrid, OnInit {
 
   cardHosts: ICardHost[] = []
   // tslint:disable-next-line:no-inferrable-types
-  columns: number = 5;
+  columns: number = 10;
   // tslint:disable-next-line:no-inferrable-types
   rows: number = 5;
   rowHeight = 75;
   columnWidth = 75;
   cells = [];
+
+  dragging= false
 
 
   // tslint:disable-next-line:member-ordering
@@ -74,26 +76,23 @@ export class GridComponent implements IGrid, OnInit {
     }
   }
 
-  dragCH(evt, ch: ICardHost) {
-    console.log('evt', evt)
-  }
+
+
   clickCH(evt: MouseEvent, ch: ICardHost) {
     if (evt.srcElement.className === 'e') { alert('ok') }
     // this.cardHosts.find(f => f.id === ch.id)
     // ch.gridarea = '';
     // now to implement drag instead of click.
-    const thisEl = document.getElementById('CH-' + ch.id);
-    const newHeight = thisEl.clientHeight;
-    thisEl.style.position = 'absolute';
-    thisEl.style.left = '300px';
-    thisEl.style.width = '400px';
-    thisEl.style.height = newHeight + 'px';
-    console.log('thisEl', thisEl)
-    console.log('event', evt)
-    console.log('cardhost', ch)
-    console.log(this.cardHosts)
+    // const thisEl = document.getElementById('CH-' + ch.id);
+    // const newHeight = thisEl.clientHeight;
+    // thisEl.style.position = 'absolute';
+    // thisEl.style.left = '300px';
+    // thisEl.style.width = '400px';
+    // thisEl.style.height = newHeight + 'px';
+    // console.log('thisEl', thisEl)
+    // console.log('event', evt)
+    // console.log('cardhost', ch)
+    // console.log(this.cardHosts)
   }
-  dragover(evt) {
-    console.log(evt)
-  }
+
 }

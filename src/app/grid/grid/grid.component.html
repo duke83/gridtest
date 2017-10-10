@@ -8,33 +8,18 @@
 
 
 <div class="wrapper" [ngStyle]="{'grid-template-columns':'repeat(' + columns + ', ' + columnWidth +'px)','grid-template-rows':'repeat(' + rows + ', ' + rowHeight + 'px)'}">
-  <div *ngFor="let cell of cells" drag (dragover)="dragover($event)" class="cell" [ngStyle]="{'grid-area':cell.gridarea}">
+  <div *ngFor="let cell of cells"  class="cell" [ngStyle]="{'grid-area':cell.gridarea}">
   {{cell.gridArea}}</div>
 
-  <div class="card-host-wrapper" id="CH-{{CH.id}}"
-   *ngFor="let CH of cardHosts" 
-   (dragstart)="dragCH($event,CH)"
-   (click)="clickCH($event,CH)"  
+  <div  
+   *ngFor="let CH of cardHosts" id="CH-{{CH.id}}" appCardHost
+  
    [ngStyle]="{'grid-area': CH.gridarea }">
     <div class="content card-area">
       <app-sample-content></app-sample-content>
     </div>
   
-    <div class="n"></div>
-    <div class="wnw"></div>
-    <div class="ene"></div>
-
-    <div class="w"></div>
-    <div class="e"></div>
-
-    <div class="wsw"></div>
-    <div class="ese"></div>
-
-    <div class="sw"></div>
-    <div class="ssw"></div>
-    <div class="s"></div>
-    <div class="sse"></div>
-    <div class="se"></div>
+   
   </div>
 
 </div>

@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { CardHostComponent } from './grid/card-host/card-host.component';
 import { GridComponent } from './grid/grid/grid.component';
 import { SampleContentComponent } from './sample-content/sample-content.component';
+import { CardHostDirective } from './grid/card-host.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardHostComponent,
     GridComponent,
-    SampleContentComponent
+    SampleContentComponent,
+    CardHostDirective
   ],
   imports: [
     BrowserModule,
