@@ -26,20 +26,12 @@ export class CardHostDirective implements OnInit {
   @HostListener('mousedown', ['$event'])
   onMousedown(event) {
     if (['e', 'ene'].includes(event.srcElement.className)) {
-      CardHostDirective.dragging = true;
-      console.log('mousedown evt', event.srcElement, event.srcElement.className)
-      CardHostDirective.thisEl = this.el.nativeElement;
-      CardHostDirective.originalcssText = CardHostDirective.thisEl.style.cssText;
-      CardHostDirective.originalHeight = CardHostDirective.thisEl.clientHeight;
-      CardHostDirective.originalLeft = CardHostDirective.thisEl.offsetLeft // + thisEl.parentElement.offsetLeft;
+      CardHostDirective.dragging = true
+      CardHostDirective.thisEl = this.el.nativeElement
+      CardHostDirective.originalcssText = CardHostDirective.thisEl.style.cssText
+      CardHostDirective.originalHeight = CardHostDirective.thisEl.clientHeight
+      CardHostDirective.originalLeft = CardHostDirective.thisEl.offsetLeft
       CardHostDirective.originalWidth = CardHostDirective.thisEl.clientWidth
-      //CardHostDirective.thisEl.style.display = 'inline-block';
-      //CardHostDirective.thisEl.style.position = 'absolute';
-      // CardHostDirective.thisEl.style.left = CardHostDirective.originalLeft + 'px';
-      // CardHostDirective.thisEl.style.height = CardHostDirective.originalHeight + 'px';
-      console.log('thisEl', CardHostDirective.thisEl)
-      console.log('onMousedown event', event)
-      // console.log('cardhost', ch)
     }
   }
 
@@ -47,12 +39,10 @@ export class CardHostDirective implements OnInit {
   @HostListener('window:mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
     if (CardHostDirective.dragging) {
-      // CardHostDirective.thisEl.style.display = 'inline-block';
-      CardHostDirective.thisEl.style.position = 'absolute';
-      CardHostDirective.thisEl.style.left = CardHostDirective.originalLeft + 'px';
-      CardHostDirective.thisEl.style.height = CardHostDirective.originalHeight + 'px';
-      CardHostDirective.thisEl.style.width =  +event.screenX - +CardHostDirective.originalLeft + 'px';
-      console.log('mousemove evt', event)
+      CardHostDirective.thisEl.style.position = 'absolute'
+      CardHostDirective.thisEl.style.left = CardHostDirective.originalLeft + 'px'
+      CardHostDirective.thisEl.style.height = CardHostDirective.originalHeight + 'px'
+      CardHostDirective.thisEl.style.width = +event.screenX - +CardHostDirective.originalLeft + 'px'
     }
   }
   @HostListener('window:mouseup', ['$event'])
@@ -62,7 +52,5 @@ export class CardHostDirective implements OnInit {
     CardHostDirective.thisEl.style.left = ''
     CardHostDirective.thisEl.style.height = ''
     CardHostDirective.thisEl.style.width = ''
-    // CardHostDirective.thisEl.style.display = 'grid'
-    console.log('mouse up', event, CardHostDirective.thisEl)
   }
 }

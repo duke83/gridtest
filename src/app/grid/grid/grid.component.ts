@@ -18,7 +18,7 @@ export class GridComponent implements IGrid, OnInit {
   columnWidth = 75;
   cells = [];
 
-  dragging= false
+  dragging = false
 
 
   // tslint:disable-next-line:member-ordering
@@ -45,7 +45,6 @@ export class GridComponent implements IGrid, OnInit {
     const startCol: number = +ch.startingCol
     const endCol: number = startCol + + ch.colSpan
 
-    // tslint:disable-next-line:no-unused-expression
     this.AdjustColumns(endCol)
     ch.gridarea = `${startRow} / ${startCol} / ${endRow} / ${endCol}`
     this.cardHosts.push(ch)
@@ -67,6 +66,7 @@ export class GridComponent implements IGrid, OnInit {
       this.cells.push({ gridarea: `${r} / ${c} / ${r} / ${c}` })
     }
   }
+
   ngOnInit() {
     const tot = this.rows * this.columns
     for (let r = 1; r < this.rows + 1; r++) {
@@ -74,25 +74,6 @@ export class GridComponent implements IGrid, OnInit {
         this.cells.push({ gridarea: `${r} / ${c} / ${r} / ${c}` })
       }
     }
-  }
-
-
-
-  clickCH(evt: MouseEvent, ch: ICardHost) {
-    if (evt.srcElement.className === 'e') { alert('ok') }
-    // this.cardHosts.find(f => f.id === ch.id)
-    // ch.gridarea = '';
-    // now to implement drag instead of click.
-    // const thisEl = document.getElementById('CH-' + ch.id);
-    // const newHeight = thisEl.clientHeight;
-    // thisEl.style.position = 'absolute';
-    // thisEl.style.left = '300px';
-    // thisEl.style.width = '400px';
-    // thisEl.style.height = newHeight + 'px';
-    // console.log('thisEl', thisEl)
-    // console.log('event', evt)
-    // console.log('cardhost', ch)
-    // console.log(this.cardHosts)
   }
 
 }

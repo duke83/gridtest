@@ -1,25 +1,30 @@
-<span class="input-tuple">startingRow<input type="text" id="startingRow" name="startingRow" [(ngModel)]="newICard.startingRow"></span>
-<span class="input-tuple">startingCol<input type="text" id="startingCol" name="startingCol" [(ngModel)]="newICard.startingCol"></span>
-<span class="input-tuple">rowSpan<input type="text" id="rowSpan" name="rowSpan" [(ngModel)]="newICard.rowSpan"></span>
-<span class="input-tuple">colSpan<input type="text" id="colSpan" name="colSpan" [(ngModel)]="newICard.colSpan"></span>
-<span class="input-tuple">label<input type="text"id="label" name="label"  [(ngModel)]="newICard.label"></span>
+<span class="input-tuple">startingRow
+  <input type="text" id="startingRow" name="startingRow" [(ngModel)]="newICard.startingRow">
+</span>
+<span class="input-tuple">startingCol
+  <input type="text" id="startingCol" name="startingCol" [(ngModel)]="newICard.startingCol">
+</span>
+<span class="input-tuple">rowSpan
+  <input type="text" id="rowSpan" name="rowSpan" [(ngModel)]="newICard.rowSpan">
+</span>
+<span class="input-tuple">colSpan
+  <input type="text" id="colSpan" name="colSpan" [(ngModel)]="newICard.colSpan">
+</span>
+<span class="input-tuple">label
+  <input type="text" id="label" name="label" [(ngModel)]="newICard.label">
+</span>
 <button (click)="addCardHost()">Go</button>
 <button (click)="addColumn()">Add Col</button>
 
 
 <div class="wrapper" [ngStyle]="{'grid-template-columns':'repeat(' + columns + ', ' + columnWidth +'px)','grid-template-rows':'repeat(' + rows + ', ' + rowHeight + 'px)'}">
-  <div *ngFor="let cell of cells"  class="cell" [ngStyle]="{'grid-area':cell.gridarea}">
-  {{cell.gridArea}}</div>
+  <div *ngFor="let cell of cells" class="cell" [ngStyle]="{'grid-area':cell.gridarea}">
+    {{cell.gridArea}}</div>
 
-  <div  
-   *ngFor="let CH of cardHosts" id="CH-{{CH.id}}" appCardHost
-  
-   [ngStyle]="{'grid-area': CH.gridarea }">
+  <div *ngFor="let CH of cardHosts" id="CH-{{CH.id}}" appCardHost [ngStyle]="{'grid-area': CH.gridarea }">
     <div class="content card-area">
       <app-sample-content></app-sample-content>
     </div>
-  
-   
   </div>
 
 </div>
