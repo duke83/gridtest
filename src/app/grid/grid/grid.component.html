@@ -18,7 +18,7 @@
 
 
 <div class="wrapper" [ngStyle]="{'grid-template-columns':'repeat(' + columns + ', ' + columnWidth +'px)','grid-template-rows':'repeat(' + rows + ', ' + rowHeight + 'px)'}">
-  <div *ngFor="let cell of cells" class="cell" [ngStyle]="{'grid-area':cell.gridarea}">
+  <div *ngFor="let cell of cells"  id="cell-{{cell.rowStart}}-{{cell.colStart}}" class="cell" [ngStyle]="{'grid-area':cell.gridarea}">
     {{cell.gridArea}}</div>
 
   <div *ngFor="let CH of cardHosts" id="CH-{{CH.id}}" appCardHost [ngStyle]="{'grid-area': CH.gridarea }">

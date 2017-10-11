@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 // import { Observable } from 'rxjs/Observable'
-import { IGrid, ICardHost } from '../types'
+import { IGrid, IGridCell, ICardHost } from '../types'
 
 @Component({
   selector: 'app-grid',
@@ -9,14 +9,18 @@ import { IGrid, ICardHost } from '../types'
 })
 export class GridComponent implements IGrid, OnInit {
 
+
+  // tslint:disable-next-line:no-inferrable-types
+  static columns: number = 10;
+  // tslint:disable-next-line:no-inferrable-types
+
+  static rows: number = 5;
+  columns = GridComponent.columns
+  rows = GridComponent.rows
   cardHosts: ICardHost[] = []
-  // tslint:disable-next-line:no-inferrable-types
-  columns: number = 10;
-  // tslint:disable-next-line:no-inferrable-types
-  rows: number = 5;
   rowHeight = 75;
   columnWidth = 75;
-  cells = [];
+  cells= [];
 
   dragging = false
 
@@ -51,7 +55,7 @@ export class GridComponent implements IGrid, OnInit {
   }
 
   AdjustColumns(endCol: number) {
-    let currentCols = this.columns
+    let currentCols = GridComponent.columns
     const newColLength = endCol
     while (currentCols < newColLength) {
       this.addColumn()
@@ -60,18 +64,19 @@ export class GridComponent implements IGrid, OnInit {
   }
 
   addColumn() {
-    this.columns++
-    const c = this.columns;
-    for (let r = 1; r < this.rows + 1; r++) {
-      this.cells.push({ gridarea: `${r} / ${c} / ${r} / ${c}` })
+    GridComponent.columns++
+    const c = GridComponent.columns;
+    for (let r = 1; r < GridComponent.rows + 1; r++) {
+      this.cells.push({rowStart: r, rowEnd: r, colStart: c, colEnd: c, gridarea: `${r} / ${c} / ${r} / ${c}` })
     }
   }
 
   ngOnInit() {
-    const tot = this.rows * this.columns
-    for (let r = 1; r < this.rows + 1; r++) {
-      for (let c = 1; c < this.columns + 1; c++) {
-        this.cells.push({ gridarea: `${r} / ${c} / ${r} / ${c}` })
+   // this.cells=new Array<IGridCell>();
+    const tot = GridComponent.rows * GridComponent.columns
+    for (let r = 1; r < GridComponent.rows + 1; r++) {
+      for (let c = 1; c < GridComponent.columns + 1; c++) {
+        this.cells.push({rowStart: r, rowEnd: r, colStart: c, colEnd: c, gridarea: `${r} / ${c} / ${r} / ${c}` })
       }
     }
   }
