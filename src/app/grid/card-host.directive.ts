@@ -28,7 +28,7 @@ export class CardHostDirective implements OnInit {
 
   @HostListener('mousedown', ['$event'])
   onMousedown(event) {
-    if (['e', 'ene'].includes(event.srcElement.className)) {
+    if (['e', 'ene', 's'].includes(event.srcElement.className)) {
       event.preventDefault()
       CardHostDirective.dragging = true
       CardHostDirective.thisEl = this.el.nativeElement
@@ -62,9 +62,9 @@ export class CardHostDirective implements OnInit {
     if (CardHostDirective.dragging && CardHostDirective.direction === 's') {
       event.preventDefault()
       CardHostDirective.thisEl.style.position = 'absolute'
-      CardHostDirective.thisEl.style.left = CardHostDirective.originalLeft + 'px'
+      // CardHostDirective.thisEl.style.left = CardHostDirective.originalLeft + 'px'
       CardHostDirective.thisEl.style.height = CardHostDirective.originalHeight + +event.screenY + 'px'
-      CardHostDirective.thisEl.style.width = CardHostDirective.originalWidth + 'px'
+      CardHostDirective.thisEl.style.width =  CardHostDirective.originalWidth + 'px'
     }
   }
 
@@ -80,7 +80,7 @@ export class CardHostDirective implements OnInit {
     }
     if (CardHostDirective.dragging && CardHostDirective.direction === 's') {
       const newEndRow = this.getRowFromYCoord(event.clientY);
-      this.renderer.setStyle(CardHostDirective.thisEl, 'grid-area', this.changeGridAreaValue('colEnd', newEndRow) )
+      this.renderer.setStyle(CardHostDirective.thisEl, 'grid-area', this.changeGridAreaValue('rowEnd', newEndRow) )
     }
     CardHostDirective.dragging = false;
   }
@@ -98,7 +98,7 @@ export class CardHostDirective implements OnInit {
   getRowFromYCoord(y: number) {
     for (let i = 1; i < GridComponent.rows + 1; i++) {
       const cell = this.renderer.selectRootElement(`#cell-${i + 1}-1`)
-      const bottomY = cell.offsetLeft + cell.parentElement.offsetLeft // + cell.clientWidth
+      const bottomY = cell.offsetTop + cell.clientHeight
       if (bottomY > y) {
         return i + 1 + 1 // because first column is the first cell's LEFT side, and because we want to capture partial overage
       }
@@ -107,21 +107,21 @@ export class CardHostDirective implements OnInit {
 
   changeGridAreaValue(gridAreaSection: 'rowStart' | 'colStart' | 'rowEnd' | 'colEnd', newVal: number) {
     // newVal will be in the form of '1 / 2 / 1 / 2'
-
-    const valArray = CardHostDirective.originalcssText.split('/')
+    const formattedNewval = ` ${newVal} `
+    const valArray = CardHostDirective.originalcssText.replace('grid-area:', '').replace(';', '').split('/')
     if (valArray.length !== 4) { throw Error('gridArea value should have 4 elements when evaluated here.') }
     switch (gridAreaSection) {
       case 'rowStart':
-        valArray[0] = newVal
+        valArray[0] = formattedNewval
         break
       case 'colStart':
-        valArray[1] = newVal
+        valArray[1] = formattedNewval
         break
       case 'rowEnd':
-        valArray[2] = newVal
+        valArray[2] = formattedNewval
         break
       case 'colEnd':
-        valArray[3] = newVal
+        valArray[3] = formattedNewval
         break
     }
     return valArray.join(' / ')
