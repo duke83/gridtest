@@ -3,9 +3,9 @@
 }
 
 .wrapper {
-    max-width: 940px;
+    /* max-width: 940px; */
     margin: 0 auto;
-    height: 600px; 
+    /* height: 600px;  */
     display: grid;
     grid-gap: 10px;
     background-color: #F7F7F7;

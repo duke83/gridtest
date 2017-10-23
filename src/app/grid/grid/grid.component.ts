@@ -50,6 +50,7 @@ export class GridComponent implements IGrid, OnInit {
     const endCol: number = startCol + + ch.colSpan
 
     this.AdjustColumns(endCol)
+    this.adjustRows(endRow)
     ch.gridarea = `${startRow} / ${startCol} / ${endRow} / ${endCol}`
     this.cardHosts.push(ch)
   }
@@ -63,11 +64,28 @@ export class GridComponent implements IGrid, OnInit {
     }
   }
 
+  adjustRows(endRow: number) {
+    let currentRows = GridComponent.rows
+    const newRowLength = endRow
+    while (currentRows < newRowLength) {
+      this.addRow()
+      currentRows++
+    }
+  }
+
   addColumn() {
     GridComponent.columns++
     const c = GridComponent.columns;
     for (let r = 1; r < GridComponent.rows + 1; r++) {
       this.cells.push({rowStart: r, rowEnd: r, colStart: c, colEnd: c, gridarea: `${r} / ${c} / ${r} / ${c}` })
+    }
+  }
+
+  addRow() {
+    GridComponent.rows++
+    const rw = GridComponent.rows;
+    for (let c = 1; c < GridComponent.columns + 1; c++) {
+      this.cells.push({rowStart: rw, rowEnd: rw, colStart: c, colEnd: c, gridarea: `${rw} / ${c} / ${rw} / ${c}` })
     }
   }
 

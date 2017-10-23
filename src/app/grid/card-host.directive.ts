@@ -10,6 +10,7 @@ export class CardHostDirective implements OnInit {
   static dragging: boolean = false;
   static thisEl: any = ''
   static originalcssText: any = ''
+  static originalGridArea: any = ''
   static originalHeight: any = ''
   static originalLeft: any = ''
   static originalWidth: any = ''
@@ -33,6 +34,7 @@ export class CardHostDirective implements OnInit {
       CardHostDirective.dragging = true
       CardHostDirective.thisEl = this.el.nativeElement
       CardHostDirective.originalcssText = CardHostDirective.thisEl.style.cssText
+      CardHostDirective.originalGridArea = CardHostDirective.thisEl.style.gridArea
       CardHostDirective.originalHeight = CardHostDirective.thisEl.clientHeight
       CardHostDirective.originalLeft = CardHostDirective.thisEl.parentElement.offsetLeft //+ CardHostDirective.thisEl.offsetLeft
       CardHostDirective.originalWidth = CardHostDirective.thisEl.clientWidth
@@ -51,7 +53,6 @@ export class CardHostDirective implements OnInit {
 
   @HostListener('window:mousemove', ['$event'])
   onMousemove(event: MouseEvent) {
-    console.log(CardHostDirective.dragging && CardHostDirective.direction === 's')
     if (CardHostDirective.dragging && CardHostDirective.direction === 'e') {
       event.preventDefault()
       CardHostDirective.thisEl.style.position = 'absolute'
@@ -63,8 +64,9 @@ export class CardHostDirective implements OnInit {
       event.preventDefault()
       CardHostDirective.thisEl.style.position = 'absolute'
       // CardHostDirective.thisEl.style.left = CardHostDirective.originalLeft + 'px'
-      CardHostDirective.thisEl.style.height = CardHostDirective.originalHeight + +event.screenY + 'px'
+      CardHostDirective.thisEl.style.height = event.screenY - (+CardHostDirective.originalHeight + 75 ) + 'px'
       CardHostDirective.thisEl.style.width =  CardHostDirective.originalWidth + 'px'
+    console.log(CardHostDirective.thisEl.style)
     }
   }
 
@@ -108,7 +110,7 @@ export class CardHostDirective implements OnInit {
   changeGridAreaValue(gridAreaSection: 'rowStart' | 'colStart' | 'rowEnd' | 'colEnd', newVal: number) {
     // newVal will be in the form of '1 / 2 / 1 / 2'
     const formattedNewval = ` ${newVal} `
-    const valArray = CardHostDirective.originalcssText.replace('grid-area:', '').replace(';', '').split('/')
+    const valArray = CardHostDirective.originalGridArea.split('/') // .originalcssText.replace('grid-area:', '').replace(';', '').split('/')
     if (valArray.length !== 4) { throw Error('gridArea value should have 4 elements when evaluated here.') }
     switch (gridAreaSection) {
       case 'rowStart':
